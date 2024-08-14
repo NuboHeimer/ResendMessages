@@ -4,7 +4,7 @@
 ///   Email:        nuboheimer@yandex.ru
 ///----------------------------------------------------------------------------
 
-///   Version:      0.0.1
+///   Version:      0.0.2
 
 
 using Newtonsoft.Json;
@@ -31,6 +31,7 @@ public class CPHInline
         	"botinokbobra",
         	"streamelements",
         	"ChatBot",
+            "Тир-на-ног'т",
         };
 
         var services = new List<string>
@@ -63,6 +64,12 @@ public class CPHInline
         	{
         		CPH.SetArgument("message", "#[" + args["eventSource"].ToString() + " | " + args["user"].ToString() + "]: " + args["message"].ToString());
         		CPH.ExecuteMethod("MiniChat Method Collection", "SendMessageVkPlay");
+        	};
+
+            if(args["eventSource"].ToString().ToLower() != "vk")
+        	{
+        		CPH.SetArgument("message", "#[" + args["eventSource"].ToString() + " | " + args["user"].ToString() + "]: " + args["message"].ToString());
+        		CPH.ExecuteMethod("MiniChat Method Collection", "SendMessageVK");
         	};
         }
 		return true;
