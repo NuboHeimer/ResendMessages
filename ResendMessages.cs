@@ -55,10 +55,10 @@ public class CPHInline
         		CPH.SendMessage("#[" + args["eventSource"].ToString() + " | " + args["user"].ToString() + "]: " + args["message"].ToString());
         	};
 
-        	if(args["eventSource"].ToString().ToLower() != "youtube")
-        	{
-        		CPH.SendYouTubeMessage("#[" + args["eventSource"].ToString() + " | " + args["user"].ToString() + "]: " + args["message"].ToString());
-        	};
+        	// if(args["eventSource"].ToString().ToLower() != "youtube")
+        	// {
+        	// 	CPH.SendYouTubeMessage("#[" + args["eventSource"].ToString() + " | " + args["user"].ToString() + "]: " + args["message"].ToString());
+        	// };
 
         	if(args["eventSource"].ToString().ToLower() != "vkplay")
         	{
