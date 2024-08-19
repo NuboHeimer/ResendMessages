@@ -6,7 +6,6 @@
 
 ///   Version:      0.0.2
 
-
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,11 +18,15 @@ public class CPHInline
 {
 	public bool Execute()
 	{
+        string internalMessage;
+
         if (!args.ContainsKey("message"))
         {
             CPH.ShowToastNotification("Недостаточно аргументов", "Необходимо указать текст сообщения в аргументе 'message'");
             return false;
-        };
+        } else {
+            internalMessage = args["message"].ToString();
+        }
 
         var ignoreNames = new List<string>
         {
@@ -52,7 +55,7 @@ public class CPHInline
         {
         	if(args["eventSource"].ToString().ToLower() != "twitch")
         	{
-        		CPH.SendMessage("#[" + args["eventSource"].ToString() + " | " + args["user"].ToString() + "]: " + args["message"].ToString());
+        		CPH.SendMessage("#[" + args["eventSource"].ToString() + " | " + args["user"].ToString() + "]: " + internalMessage);
         	};
 
         	// if(args["eventSource"].ToString().ToLower() != "youtube")
@@ -62,13 +65,13 @@ public class CPHInline
 
         	if(args["eventSource"].ToString().ToLower() != "vkplay")
         	{
-        		CPH.SetArgument("message", "#[" + args["eventSource"].ToString() + " | " + args["user"].ToString() + "]: " + args["message"].ToString());
+        		CPH.SetArgument("message", "#[" + args["eventSource"].ToString() + " | " + args["user"].ToString() + "]: " + internalMessage);
         		CPH.ExecuteMethod("MiniChat Method Collection", "SendMessageVkPlay");
         	};
 
             if(args["eventSource"].ToString().ToLower() != "vk")
         	{
-        		CPH.SetArgument("message", "#[" + args["eventSource"].ToString() + " | " + args["user"].ToString() + "]: " + args["message"].ToString());
+        		CPH.SetArgument("message", "#[" + args["eventSource"].ToString() + " | " + args["user"].ToString() + "]: " internalMessage);
         		CPH.ExecuteMethod("MiniChat Method Collection", "SendMessageVK");
         	};
         }
